@@ -1,8 +1,8 @@
 trigger:
-- master
+- dev
 
 pr:
-- master
+- dev
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -20,7 +20,7 @@ jobs:
     displayName: "Manual Approval"
     dependsOn: terraform_approval
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'ubuntu-latest' 
     steps:
       - script: 
           echo "Manual Approval Job"
@@ -30,27 +30,37 @@ jobs:
       - script: |
           ls -la
           pwd
-          cd $(Build.SourcesDirectory)/azure-1
+          cd $(Build.SourcesDirectory)/rose
           pwd
           terraform init
         displayName: 'Terraform Init'
 
       - script: |
-          cd $(Build.SourcesDirectory)/azure-1
+          cd $(Build.SourcesDirectory)/rose
           terraform validate
         displayName: 'Terraform Validate'
 
       - script: |
           az login 
-        displayName: 'Azure Login'
+        displayName: 'Azure Login'  
 
       - script: |
-          cd $(Build.SourcesDirectory)/azure-1
-          terraform plan -out=tfplan
-          if [ $? -ne 0 ]; then
-            echo "Error: Terraform plan failed. Please check the plan output for details."
-            exit 1
-          fi
+          cd $(Build.SourcesDirectory)/rose
+          terraform plan \
+          -var "nsg_name=$(nsg_name)" \
+          -var "location=$(location)" \
+          -var "resource_group_name=$(resource_group_name)" \
+          -var "nsg_rules=[{\"name\":\"SSH\",\"priority\":100,\"access\":\"Allow\",\"protocol\":\"TCP\",\"source_port_range\":\"*\",\"destination_port_range\":\"22\",\"source_address_prefix\":\"*\",\"destination_address_prefix\":\"*\"},{\"name\":\"HTTP\",\"priority\":101,\"access\":\"Allow\",\"protocol\":\"TCP\",\"source_port_range\":\"*\",\"destination_port_range\":\"80\",\"source_address_prefix\":\"*\",\"destination_address_prefix\":\"*\"}]" \
+          -var "vnet_name=$(vnet_name)" \
+          -var "vnet_address_space=[\"10.0.0.0/16\"]" \
+          -var "subnet_name=$(subnet_name)" \
+          -var "subnet_address_prefix=[\"10.0.0.0/24\"]" \
+          -var "vm_name=$(vm_name)" \
+          -var "vm_size=$(vm_size)" \
+          -var "vm_username=$(vm_username)" \
+          -var "storage_account_name=$(storage_account_name)" \
+          -var "container_name=$(container_name)" \
+          -var "location_name=$(location_name)" \
         displayName: 'Terraform Plan'
 
   - job: manual_intervention
@@ -70,12 +80,22 @@ jobs:
       vmImage: 'ubuntu-latest'
     steps:
       - script: |
-          cd $(Build.SourcesDirectory)/azure-1
+          cd $(Build.SourcesDirectory)/rose
           terraform init
           az login 
-          terraform apply -auto-approve
-          if [ $? -ne 0 ]; then
-            echo "Error: Terraform apply failed. Please check the apply output for details."
-            exit 1
-          fi
+          terraform apply -auto-approve \
+          -var "nsg_name=$(nsg_name)" \
+          -var "location=$(location)" \
+          -var "resource_group_name=$(resource_group_name)" \
+          -var "nsg_rules=[{\"name\":\"SSH\",\"priority\":100,\"access\":\"Allow\",\"protocol\":\"TCP\",\"source_port_range\":\"*\",\"destination_port_range\":\"22\",\"source_address_prefix\":\"*\",\"destination_address_prefix\":\"*\"},{\"name\":\"HTTP\",\"priority\":101,\"access\":\"Allow\",\"protocol\":\"TCP\",\"source_port_range\":\"*\",\"destination_port_range\":\"80\",\"source_address_prefix\":\"*\",\"destination_address_prefix\":\"*\"}]" \
+          -var "vnet_name=$(vnet_name)" \
+          -var "vnet_address_space=[\"10.0.0.0/16\"]" \
+          -var "subnet_name=$(subnet_name)" \
+          -var "subnet_address_prefix=[\"10.0.0.0/24\"]" \
+          -var "vm_name=$(vm_name)" \
+          -var "vm_size=$(vm_size)" \
+          -var "vm_username=$(vm_username)" \
+          -var "storage_account_name=$(storage_account_name)" \
+          -var "container_name=$(container_name)" \
+          -var "location_name=$(location_name)" \
         displayName: 'Apply Terraform Changes'
