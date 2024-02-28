@@ -61,6 +61,7 @@ jobs:
           -var "storage_account_name=$(storage_account_name)" \
           -var "container_name=$(container_name)" \
           -var "location_name=$(location_name)" \
+          -var "vm_password"=$$(vm_password)" \
         displayName: 'Terraform Plan'
 
   - job: manual_intervention
@@ -98,4 +99,5 @@ jobs:
           -var "storage_account_name=$(storage_account_name)" \
           -var "container_name=$(container_name)" \
           -var "location_name=$(location_name)" \
+          -var "vm_password"=$$(vm_password)" \
         displayName: 'Apply Terraform Changes'
