@@ -75,3 +75,7 @@ variable "location_name" {
   type        = string
   description = "Location for resources in the root module"
 }
+variable "vm_password" {
+  type        = string
+  description = "Password for the Virtual Machine"
+}

@@ -45,3 +45,7 @@ variable "container_name" {
   type        = string
 }
 
+variable "vm_password" {
+  type        = string
+  description = "Password for the Virtual Machine"
+}

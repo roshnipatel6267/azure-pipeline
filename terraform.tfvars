@@ -34,6 +34,7 @@ subnet_address_prefix       = ["10.0.2.0/24"]
 vm_name                     = "azureuser1"
 vm_size                     = "Standard_B1s"
 vm_username                 = "azureuser"
+vm_password                 = "Complex@password"
 location_name               = "southeast Asia"
 # Blob Storage variables
 storage_account_name        = "roshnitest11"
