@@ -2,7 +2,7 @@
 variable "location_name" {
   type        = string
   description = "Location of the Virtual Machine"
-  default = "eastus"
+  default = "southeast Asia"
 }
 
 variable "vm_name" {
@@ -14,7 +14,7 @@ variable "vm_name" {
 variable "location" {
   type        = string
   description = "Location of the Virtual Machine"
-  default = "eastus"
+  default = "southeast Asia"
 }
 
 variable "resource_group_name" {

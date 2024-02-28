@@ -7,7 +7,7 @@ variable "nsg_name" {
 variable "location" {
   type        = string
   description = "Location of the Network Security Group"
-  default = "eastus"
+  default = "southeast Asia"
 }
 
 variable "resource_group_name" {

@@ -9,7 +9,7 @@ variable "nsg_name" {
 variable "location" {
   type        = string
   description = "Location of the Network Security Group"
-  default = "eastus"
+  default = "southeast Asia"
 }
 
 variable "resource_group_name" {
@@ -62,7 +62,7 @@ variable "vnet_name" {
 variable "vnet_address_space" {
   type        = list(string)
   description = "Address space for the Virtual Network"
-  default = [ "10.0.0.0/16", "10.0.6.0/16" , "10.0.8.0/16" ]
+  default = [ "10.0.0.0/16" , "10.0.8.0/16" ]
 }
 
 variable "subnet_name" {
@@ -74,7 +74,7 @@ variable "subnet_name" {
 variable "subnet_address_prefix" {
   type        = list(string)
   description = "Address prefix for the Subnet"
-  default =  ["10.0.2.0/24" , "10.0.10.0/24"]
+  default =  ["10.0.2.0/24" , "10.0.6.0/24"]
 }
 
 variable "vm_name" {
@@ -108,7 +108,7 @@ variable "container_name" {
 variable "location_name" {
   type        = string
   description = "Location for resources in the root module"
-  default = "eastus"
+  default = "southeast Asia"
 }
 variable "vm_password" {
   type        = string

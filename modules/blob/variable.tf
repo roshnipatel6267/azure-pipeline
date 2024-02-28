@@ -21,5 +21,5 @@ variable "resource_group_name" {
 variable "location" {
   type        = string
   description = "Location of the Blob Storage"
-  default = "eastus"
+  default = "southeast Asia"
 }
