@@ -1,16 +1,19 @@
 variable "nsg_name" {
   type        = string
   description = "Name of the Network Security Group"
+  default = "roshni-nsg"
 }
 
 variable "location" {
   type        = string
   description = "Location of the Network Security Group"
+  default = "eastus"
 }
 
 variable "resource_group_name" {
   type        = string
   description = "Name of the Resource Group for NSG"
+  default = "sa1_test_eic_TejalDave"
 }
 
 variable "nsg_rules" {

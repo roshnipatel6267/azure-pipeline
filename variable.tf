@@ -3,16 +3,19 @@
 variable "nsg_name" {
   type        = string
   description = "Name of the Network Security Group"
+  default = "roshni-nsg"
 }
 
 variable "location" {
   type        = string
   description = "Location of the Network Security Group"
+  default = "eastus"
 }
 
 variable "resource_group_name" {
   type        = string
   description = "Name of the Resource Group for NSG"
+  default = "sa1_test_eic_TejalDave"
 }
 
 variable "nsg_rules" {
@@ -32,50 +35,61 @@ variable "nsg_rules" {
 variable "vnet_name" {
   type        = string
   description = "Name of the Virtual Network"
+  default = "roshni-vnet"
 }
 variable "vnet_address_space" {
   type        = list(string)
   description = "Address space for the Virtual Network"
+  default = [ "10.0.0.0/16", "10.0.6.0/16" , "10.0.8.0/16" ]
 }
 
 variable "subnet_name" {
   type        = string
   description = "Name of the Subnet"
+  default = "roshni-subnet"
 }
 
 variable "subnet_address_prefix" {
   type        = list(string)
   description = "Address prefix for the Subnet"
+  default =  ["10.0.2.0/24" , "10.0.10.0/24"]
 }
 
 variable "vm_name" {
   type        = string
   description = "Name of the Virtual Machine"
+  default = "roshni-vm"
 }
 variable "vm_size" {
   type        = string
   description = "Size of the Virtual Machine"
+  default = "Standard_B2s"
 }
 
 variable "vm_username" {
   type        = string
   description = "Username for the Virtual Machine"
+  default = "ubuntu-user"
 }
 variable "storage_account_name" {
   type        = string
   description = "Name of the Storage Account"
+  default = "roshni-storage"
 }
 
 variable "container_name" {
   type        = string
   description = "Name of the Blob Container"
+  default = "container-roshni"
 }
 
 variable "location_name" {
   type        = string
   description = "Location for resources in the root module"
+  default = "eastus"
 }
 variable "vm_password" {
   type        = string
   description = "Password for the Virtual Machine"
+  default = "Roshni@123eic"
 }
