@@ -45,7 +45,7 @@ variable "subnet_id" {
 variable "storage_account_name" {
   description = "Name of the storage account"
   type        = string
-  default = "roshni-storage"
+  default = "roshnistorage"
 }
 
 variable "container_name" {

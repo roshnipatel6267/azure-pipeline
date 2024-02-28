@@ -2,7 +2,7 @@
 variable "storage_account_name" {
   type        = string
   description = "Name of the Storage Account"
-  default = "roshni-storage"
+  default = "roshnistorage"
 }
 
 variable "container_name" {
