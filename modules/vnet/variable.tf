@@ -19,7 +19,7 @@ variable "resource_group_name" {
 variable "vnet_address_space" {
   type        = list(string)
   description = "Address space for the Virtual Network"
-  default     = ["10.0.0.0/16", "10.0.8.0/16"]
+  default     = ["10.0.0.0/16"]
 }
 
 variable "subnet_name" {
@@ -31,5 +31,5 @@ variable "subnet_name" {
 variable "subnet_address_prefix" {
   type        = list(string)
   description = "Address prefix for the Subnet"
-  default     = ["10.0.2.0/24", "10.0.6.0/24"]
+  default     = ["10.0.2.0/24"]
 }
