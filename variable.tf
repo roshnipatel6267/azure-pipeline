@@ -30,6 +30,28 @@ variable "nsg_rules" {
     destination_address_prefix = string
   }))
   description = "List of rules for the Network Security Group"
+  default = [
+    {
+      name                       = "SSH"
+      priority                   = 100
+      access                     = "Allow"
+      protocol                   = "TCP"
+      source_port_range          = "*"
+      destination_port_range     = "22"
+      source_address_prefix      = "*"
+      destination_address_prefix = "*"
+    },
+    {
+      name                       = "HTTP"
+      priority                   = 101
+      access                     = "Allow"
+      protocol                   = "TCP"
+      source_port_range          = "*"
+      destination_port_range     = "80"
+      source_address_prefix      = "*"
+      destination_address_prefix = "*"
+    }
+  ]
 }
 
 variable "vnet_name" {
